@@ -1,7 +1,7 @@
 {
   "name": "ionic-ad",
   "description": "operate ionic project",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-ad": "./bin/run"
@@ -22,6 +22,7 @@
     "@types/mocha": "^5",
     "@types/node": "^10",
     "chai": "^4",
+    "codelyzer": "^4.4.2",
     "globby": "^8",
     "mocha": "^5",
     "nyc": "^12",
