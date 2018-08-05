@@ -6,7 +6,7 @@ const hook: Hook<'prerun'> = async function (opts) {
 
   fs.access(filePath, fs.constants.R_OK | fs.constants.W_OK, error => {
     if (error) {
-      this.log('Sorry! ionic-ad lint can only be run in an Ionic project directory.')
+      this.log('Sorry! ionic-ad can only be run in an Ionic project directory.')
       return
     }
   })
