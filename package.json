@@ -1,7 +1,7 @@
 {
   "name": "ionic-ad",
   "description": "operate ionic project",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-ad": "./bin/run"
