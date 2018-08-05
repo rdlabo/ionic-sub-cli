@@ -16,6 +16,12 @@ export default class Lint extends Command {
         this.log('Sorry! ionic-ad lint can only be run in an Ionic project directory.')
         return
       }
+      const exec = require('child_process').exec
+      exec('npm install codelyzer --save-dev', error => {
+        if (error) {
+          this.log('Sorry. failed npm install. You should exec npm install codelyzer --save-dev')
+        }
+      })
 
       fs.writeFile(filePath, tsLintRule, error => {
         if (error) {
