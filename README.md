@@ -9,7 +9,7 @@ This CLI will support for developing Ionic apps.
 
 ## Install
 ```bash
-$ npm i ionic-pj -g
+$ npm i @rdlabo/ionic-pj -g
 ```
 
 - The corresponding version of nodejs is version 8 or higher!
