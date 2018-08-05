@@ -6,7 +6,7 @@ const chalk = require('chalk')
 
 export default class Set extends Command {
   static description = 'auto set config. input arg `lint` or `prettier`' +
-    'ex) ionic-ad set lint'
+    'ex) ionic-pj set lint'
 
   static flags = {
     help: flags.help({char: 'h'}),
@@ -47,7 +47,7 @@ export default class Set extends Command {
     // change tsLintRule
     fs.writeFile('./tslint.json', tsLintRule, (error: any) => {
       if (error) {
-        this.log(chalk.red('Sorry! ionic-ad did not re-write tslint-rule.'))
+        this.log(chalk.red('Sorry! ionic-pj did not re-write tslint-rule.'))
       } else {
         this.log('[' + chalk.green('OK') + '] ' + 'Complete re-write tslint-rule.')
       }
@@ -69,7 +69,7 @@ export default class Set extends Command {
 
     fs.writeFile('./prettier.config.js', 'module.exports =require(\'@kaizenplatform/prettier-config\');', (error: any) => {
       if (error) {
-        this.log(chalk.red('Sorry! ionic-ad did not write prettier.config.js.'))
+        this.log(chalk.red('Sorry! ionic-pj did not write prettier.config.js.'))
       } else {
         this.log('[' + chalk.green('OK') + '] ' + 'create prettier.config.js')
       }
@@ -77,7 +77,7 @@ export default class Set extends Command {
 
     fs.readFile('./package.json', 'utf8', (error: any, data: string) => {
       if (error) {
-        this.log(chalk.red('Sorry! ionic-ad did not read package.json.'))
+        this.log(chalk.red('Sorry! ionic-pj did not read package.json.'))
         return
       }
 
@@ -94,7 +94,7 @@ export default class Set extends Command {
 
       fs.writeFile('./package.json', data, (error: any) => {
         if (error) {
-          this.log(chalk.red('Sorry! ionic-ad did not re-write package.json/'))
+          this.log(chalk.red('Sorry! ionic-pj did not re-write package.json/'))
         } else {
           this.log('[' + chalk.green('OK') + '] ' + 'write prettier and pre-commit in package.json')
         }

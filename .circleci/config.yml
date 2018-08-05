@@ -37,7 +37,7 @@ jobs:
 
 workflows:
   version: 2
-  "ionic-ad":
+  "ionic-pj":
     jobs:
       - node-latest
       - node-8

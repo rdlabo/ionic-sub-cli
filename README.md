@@ -1,15 +1,15 @@
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Build Status](https://travis-ci.org/rdlabo/ionic-ad.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-ad)
-[![Version](https://img.shields.io/npm/v/ionic-ad.svg)](https://npmjs.org/package/ionic-ad)
+[![Build Status](https://travis-ci.org/rdlabo/ionic-pj.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-pj)
+[![Version](https://img.shields.io/npm/v/ionic-pj.svg)](https://npmjs.org/package/ionic-pj)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
-# ionic-ad
+# ionic-pj
 This is private command line interface (CLI) for support Ionic CLI. 
 This CLI will support for developing Ionic apps.
 
 ## Install
 ```bash
-$ npm i ionic-ad -g
+$ npm i ionic-pj -g
 ```
 
 - The corresponding version of nodejs is version 8 or higher!
@@ -19,8 +19,8 @@ $ npm i ionic-ad -g
 Just run the command!
 
 ```bash
-$ ionic-ad set lint
-$ ionic-ad set prettier
+$ ionic-pj set lint
+$ ionic-pj set prettier
 ```
 
 ### set lint
