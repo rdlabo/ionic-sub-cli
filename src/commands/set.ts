@@ -53,7 +53,7 @@ export default class Set extends Command {
     })
   }
   async prettier() {
-    cli.action.start('npm install @kaizenplatform/prettier-config pre-commit --save-dev')
+    cli.action.start('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev')
     await new Promise(resolve => {
       exec('npm install @kaizenplatform/prettier-config pre-commit --save-dev', error => {
         if (error) {
@@ -80,7 +80,7 @@ export default class Set extends Command {
         return
       }
 
-      const executed = data.match(/(\"prettier\"|\"pre-commit\")/g)
+      const executed = data.match(/(\"prettier\"|\"pre-commit: {\")/g)
       if (executed) {
         this.log('package.json have prettier or pre-commit script. this command do not overwrite.')
         return
