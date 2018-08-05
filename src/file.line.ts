@@ -123,7 +123,8 @@ export const tsLintRule: string =
   '      true,\n' +
   '      "element",\n' +
   '      "app",\n' +
-  '      "kebab-case"\n' +
+  '      "kebab-case",\n' +
+  '      "page"\n' +
   '    ],\n' +
   '    "no-output-on-prefix": true,\n' +
   '    "use-input-property-decorator": true,\n' +
