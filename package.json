@@ -1,7 +1,7 @@
 {
   "name": "ionic-ad",
   "description": "operate ionic project",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-ad": "./bin/run"
@@ -49,10 +49,7 @@
     "bin": "ionic-ad",
     "plugins": [
       "@oclif/plugin-help"
-    ],
-    "hooks": {
-      "prerun": "./lib/hooks/prerun/check_ionic"
-    }
+    ]
   },
   "repository": "https://github.com/rdlabo/ionic-ad/ionic-ad",
   "scripts": {
