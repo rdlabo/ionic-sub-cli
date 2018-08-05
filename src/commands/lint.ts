@@ -20,6 +20,8 @@ export default class Lint extends Command {
       exec('npm install codelyzer --save-dev', error => {
         if (error) {
           this.log('Sorry. failed npm install. You should exec npm install codelyzer --save-dev')
+        } else {
+          this.log('Complete install codelyzer --save-dev')
         }
       })
 
@@ -29,7 +31,7 @@ export default class Lint extends Command {
           return
         }
       })
-      this.log('complete change ts-lint rule!!')
+      this.log('Complete change ts-lint rule')
     })
   }
 }
