@@ -21,9 +21,9 @@ export default class Set extends Command {
     const {args} = this.parse(Set)
 
     if (args.package === 'lint') {
-      this.lint()
+      this.lint().catch()
     } else if (args.package === 'prettier') {
-      this.prettier()
+      this.prettier().catch()
     } else {
       this.log('Please input set package. lint or prettier.')
     }
@@ -32,7 +32,7 @@ export default class Set extends Command {
     // npm install codelyzer
     cli.action.start('npm install codelyzer --save-dev')
     await new Promise(resolve => {
-      exec('npm install codelyzer --save-dev', error => {
+      exec('npm install codelyzer --save-dev', (error: any) => {
         if (error) {
           this.log('Sorry. failed npm install. You should exec npm install codelyzer --save-dev')
         } else {
@@ -44,7 +44,7 @@ export default class Set extends Command {
     })
 
     // change tsLintRule
-    fs.writeFile('./tslint.json', tsLintRule, error => {
+    fs.writeFile('./tslint.json', tsLintRule, (error: any) => {
       if (error) {
         this.log('Sorry! ionic-ad did not re-write tslint-rule.')
       } else {
@@ -55,7 +55,7 @@ export default class Set extends Command {
   async prettier() {
     cli.action.start('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev')
     await new Promise(resolve => {
-      exec('npm install @kaizenplatform/prettier-config pre-commit --save-dev', error => {
+      exec('npm install @kaizenplatform/prettier-config pre-commit --save-dev', (error: any) => {
         if (error) {
           this.log('Sorry. failed npm install. You should exec npm install @kaizenplatform/prettier-config --save-dev')
         } else {
@@ -66,7 +66,7 @@ export default class Set extends Command {
       })
     })
 
-    fs.writeFile('./prettier.config.js', 'module.exports =require(\'@kaizenplatform/prettier-config\');', error => {
+    fs.writeFile('./prettier.config.js', 'module.exports =require(\'@kaizenplatform/prettier-config\');', (error: any) => {
       if (error) {
         this.log('Sorry! ionic-ad did not write prettier.config.js.')
       } else {
@@ -74,7 +74,7 @@ export default class Set extends Command {
       }
     })
 
-    fs.readFile('./package.json', 'utf8', (error, data) => {
+    fs.readFile('./package.json', 'utf8', (error: any, data: string) => {
       if (error) {
         this.log('Sorry! ionic-ad did not read package.json.')
         return
@@ -91,7 +91,7 @@ export default class Set extends Command {
       const scriptPrecommit = '"pre-commit": ["prettier"],\n  "dependencies": {'
       data = data.replace('"dependencies": {', scriptPrecommit)
 
-      fs.writeFile('./package.json', data, error => {
+      fs.writeFile('./package.json', data, (error: any) => {
         if (error) {
           this.log('Sorry! ionic-ad did not re-write package.json/')
         } else {
