@@ -12,28 +12,22 @@ export default class Lint extends Command {
     const fs = require('fs')
     const filePath = './tslint.json'
 
-    fs.access(filePath, fs.constants.R_OK | fs.constants.W_OK, error => {
+    const exec = require('child_process').exec
+    exec('npm install codelyzer --save-dev', error => {
       if (error) {
-        this.log('Sorry! ionic-ad lint can only be run in an Ionic project directory.')
+        this.log('Sorry. failed npm install. You should exec npm install codelyzer --save-dev')
+      } else {
+        this.log('Complete install codelyzer --save-dev')
+      }
+    })
+
+    fs.writeFile(filePath, tsLintRule, error => {
+      if (error) {
+        this.log('Sorry! ionic-ad lint did not re-write ts-lint-rule.')
         return
       }
-      const exec = require('child_process').exec
-      exec('npm install codelyzer --save-dev', error => {
-        if (error) {
-          this.log('Sorry. failed npm install. You should exec npm install codelyzer --save-dev')
-        } else {
-          this.log('Complete install codelyzer --save-dev')
-        }
-      })
-
-      fs.writeFile(filePath, tsLintRule, error => {
-        if (error) {
-          this.log('Sorry! ionic-ad lint did not re-write ts-lint-rule.')
-          return
-        }
-      })
-      this.log('Complete change ts-lint rule')
     })
+    this.log('Complete change ts-lint rule')
   }
 }
 

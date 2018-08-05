@@ -48,7 +48,10 @@
     "bin": "ionic-ad",
     "plugins": [
       "@oclif/plugin-help"
-    ]
+    ],
+    "hooks": {
+      "prerun": "./lib/hooks/prerun/check_ionic"
+    }
   },
   "repository": "https://github.com/rdlabo/ionic-ad/ionic-ad",
   "scripts": {
