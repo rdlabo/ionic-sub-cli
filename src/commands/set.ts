@@ -1,14 +1,25 @@
 import {Command, flags} from '@oclif/command'
 
-export default class Lint extends Command {
-  static description = 'add original tslint format.'
+export default class Set extends Command {
+  static description = 'describe the command here'
 
   static flags = {
     help: flags.help({char: 'h'}),
+    name: flags.string({char: 'n', description: 'name to print'}),
   }
 
+  static args = [{name: 'package'}]
+
   async run() {
-    this.parse(Lint)
+    const {args} = this.parse(Set)
+
+    if (args.package === 'lint') {
+      this.lint()
+    } else {
+      this.log('Please input set package. lint or prettier.')
+    }
+  }
+  public lint() {
     const fs = require('fs')
     const filePath = './tslint.json'
 
