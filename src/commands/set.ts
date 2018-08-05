@@ -80,9 +80,9 @@ export default class Set extends Command {
         return
       }
 
-      const executed = data.match(/(\"prettier\"|\"pre-commit: {\")/g)
+      const executed = data.match(/\"pre-commit: {\"/g)
       if (executed) {
-        this.log('package.json have prettier or pre-commit script. this command do not overwrite.')
+        this.log('package.json have \'"pre-commit: {\' line. this command do not overwrite.')
         return
       }
 
