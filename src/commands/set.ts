@@ -1,16 +1,21 @@
 import {Command, flags} from '@oclif/command'
+import cli from 'cli-ux'
 const fs = require('fs')
 const exec = require('child_process').exec
 
 export default class Set extends Command {
-  static description = 'describe the command here'
+  static description = 'auto set config. input arg `lint` or `prettier`' +
+    'ex) ionic-ad set lint'
 
   static flags = {
     help: flags.help({char: 'h'}),
-    name: flags.string({char: 'n', description: 'name to print'}),
   }
 
-  static args = [{name: 'package'}]
+  static args = [{
+    name: 'package',
+    description: 'input `lint` or `prettier`',
+    required: true
+  }]
 
   async run() {
     const {args} = this.parse(Set)
@@ -25,7 +30,7 @@ export default class Set extends Command {
   }
   async lint() {
     // npm install codelyzer
-    this.log('npm install codelyzer --save-dev')
+    cli.action.start('npm install codelyzer --save-dev')
     await new Promise(resolve => {
       exec('npm install codelyzer --save-dev', error => {
         if (error) {
@@ -33,6 +38,7 @@ export default class Set extends Command {
         } else {
           this.log('Complete install codelyzer --save-dev')
         }
+        cli.action.stop()
         resolve()
       })
     })
@@ -47,7 +53,7 @@ export default class Set extends Command {
     })
   }
   async prettier() {
-    this.log('npm install @kaizenplatform/prettier-config pre-commit --save-dev')
+    cli.action.start('npm install @kaizenplatform/prettier-config pre-commit --save-dev')
     await new Promise(resolve => {
       exec('npm install @kaizenplatform/prettier-config pre-commit --save-dev', error => {
         if (error) {
@@ -55,6 +61,7 @@ export default class Set extends Command {
         } else {
           this.log('Complete install @kaizenplatform/prettier-config pre-commit --save-dev')
         }
+        cli.action.stop()
         resolve()
       })
     })

@@ -11,6 +11,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
+    "cli-ux": "^4.7.3",
     "tslib": "^1"
   },
   "devDependencies": {
