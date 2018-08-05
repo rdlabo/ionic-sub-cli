@@ -55,11 +55,11 @@ export default class Set extends Command {
   async prettier() {
     cli.action.start('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev')
     await new Promise(resolve => {
-      exec('npm install @kaizenplatform/prettier-config pre-commit --save-dev', (error: any) => {
+      exec('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev', (error: any) => {
         if (error) {
           this.log('Sorry. failed npm install. You should exec npm install @kaizenplatform/prettier-config --save-dev')
         } else {
-          this.log('Complete install @kaizenplatform/prettier-config pre-commit --save-dev')
+          this.log('Complete install prettier @kaizenplatform/prettier-config pre-commit --save-dev')
         }
         cli.action.stop()
         resolve()
