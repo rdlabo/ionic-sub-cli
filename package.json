@@ -1,7 +1,7 @@
 {
   "name": "ionic-ad",
   "description": "operate ionic project",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-ad": "./bin/run"
@@ -11,6 +11,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
+    "chalk": "^2.4.1",
     "cli-ux": "^4.7.3",
     "tslib": "^1"
   },
