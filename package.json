@@ -1,12 +1,12 @@
 {
   "name": "ionic-ad",
   "description": "operate ionic project",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-ad": "./bin/run"
   },
-  "bugs": "https://github.com/rdlabo/ionic-ad/ionic-ad/issues",
+  "bugs": "https://github.com/rdlabo/ionic-ad/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -38,7 +38,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/rdlabo/ionic-ad/ionic-ad",
+  "homepage": "https://github.com/rdlabo/ionic-ad",
   "keywords": [
     "oclif"
   ],
@@ -51,7 +51,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/rdlabo/ionic-ad/ionic-ad",
+  "repository": "https://github.com/rdlabo/ionic-ad",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
     "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
