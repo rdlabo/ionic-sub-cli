@@ -8,6 +8,7 @@ export default class Lint extends Command {
   }
 
   async run() {
+    this.parse(Lint)
     const fs = require('fs')
     const filePath = './tslint.json'
 
