@@ -2,7 +2,6 @@ import cli from 'cli-ux'
 const chalk = require('chalk')
 const fs = require('fs')
 const exec = require('child_process').exec
-import {tsLintRule} from '../config/file.line'
 
 export class Lint {
   public type: string
@@ -29,7 +28,8 @@ export class Lint {
   }
   addLint() {
     return new Promise((resolve, reject) => {
-      fs.writeFile('./tslint.json', tsLintRule, (error: any) => {
+      const tslint = require('../template/tslint.json')
+      fs.writeFile('./tslint.json', JSON.stringify(tslint, null, '  '), (error: any) => {
         if (error) {
           reject(chalk.red('Sorry! ionic-sub did not rewrite ./tslint.json.'))
           return
