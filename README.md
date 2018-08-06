@@ -1,15 +1,15 @@
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Build Status](https://travis-ci.org/rdlabo/ionic-ad.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-pj)
+[![Build Status](https://travis-ci.org/rdlabo/ionic-ad.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-sub)
 [![npm version](https://badge.fury.io/js/%40rdlabo%2Fionic-pj.svg)](https://badge.fury.io/js/%40rdlabo%2Fionic-pj)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
-# ionic-pj
+# ionic-sub
 This is private command line interface (CLI) for support Ionic CLI. 
 This CLI will support for developing Ionic apps.
 
 ## Install
 ```bash
-$ npm i @rdlabo/ionic-pj -g
+$ npm i @rdlabo/ionic-sub -g
 ```
 
 - The corresponding version of nodejs is version 8 or higher!
@@ -19,8 +19,8 @@ $ npm i @rdlabo/ionic-pj -g
 Just run the command!
 
 ```bash
-$ ionic-pj set lint
-$ ionic-pj set prettier
+$ ionic-sub set lint
+$ ionic-sub set prettier
 ```
 
 ### set lint

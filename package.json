@@ -1,12 +1,12 @@
 {
-  "name": "@rdlabo/ionic-pj",
+  "name": "@rdlabo/ionic-sub",
   "description": "operate ionic project",
   "version": "0.0.13",
   "author": "Masahiko Sakakibara",
   "bin": {
-    "ionic-pj": "./bin/run"
+    "ionic-sub": "./bin/run"
   },
-  "bugs": "https://github.com/rdlabo/ionic-pj/issues",
+  "bugs": "https://github.com/rdlabo/ionic-sub/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -39,7 +39,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/rdlabo/ionic-pj",
+  "homepage": "https://github.com/rdlabo/ionic-sub",
   "keywords": [
     "oclif"
   ],
@@ -47,12 +47,12 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "ionic-pj",
+    "bin": "ionic-sub",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/rdlabo/ionic-pj",
+  "repository": "https://github.com/rdlabo/ionic-sub",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
     "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
