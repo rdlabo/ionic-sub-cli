@@ -1,6 +1,6 @@
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Build Status](https://travis-ci.org/rdlabo/ionic-ad.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-sub)
-[![npm version](https://badge.fury.io/js/%40rdlabo%2Fionic-pj.svg)](https://badge.fury.io/js/%40rdlabo%2Fionic-pj)
+[![Build Status](https://travis-ci.org/rdlabo/ionic-ad.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-ad)
+[![npm version](https://badge.fury.io/js/%40rdlabo%2Fionic-sub.svg)](https://badge.fury.io/js/%40rdlabo%2Fionic-sub)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 # ionic-sub
