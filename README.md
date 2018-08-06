@@ -5,7 +5,7 @@
 
 # ionic-sub
 This is private command line interface (CLI) for support Ionic CLI. 
-This CLI will support for developing Ionic apps.
+This CLI support for developing Ionic apps.
 
 ## Install
 ```bash
@@ -25,14 +25,14 @@ $ ionic-sub set prettier
 
 ### set lint
 
-Support Ionic v3. v3's default ts-lint is simple. so support development a little. This command re-write ts-lint base of Angular 6. and modifying Ionic v3 develop easier.
+This command rewrite tslint.json base of Angular 6.
 
-- npm install codelyzer --save-dev
-- re-write ./tslint.json
+- npm install codelyzer --save-dev (v3:ionic-angular only)
+- rewrite ./tslint.json
 
 ### set prettier
 
-Support Ionic v3. import prettier and auto set pre-commit.
+import prettier and auto set pre-commit.
 
 - npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev
 - add prettier.config.js

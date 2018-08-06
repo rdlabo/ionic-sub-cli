@@ -13,6 +13,7 @@ export default class Set extends Command {
     description: 'input `lint` or `prettier`',
     required: true
   }]
+  public type: string = ''
 
   async run() {
     const {args} = this.parse(Set)
@@ -20,6 +21,7 @@ export default class Set extends Command {
     this.type = await new Helper().getIonicType().catch(error => {
       this.error(error)
       this.exit(200)
+      return error
     })
     if (this.type !== 'ionic-angular' && this.type !== 'angular') {
       this.error('Sorry! ionic-sub CLI can only be run in ionic-angular or angular only')
@@ -38,14 +40,14 @@ export default class Set extends Command {
   async lint() {
     const {Lint} = await import('../libraries/lint')
     const lint = new Lint(this.type)
-    this.log(await lint.installPackage().catch(error => this.log(error)))
-    this.log(await lint.addLint().catch(error => this.log(error)))
+    this.log(await lint.installPackage().catch(error => error))
+    this.log(await lint.addLint().catch(error => error))
   }
   async prettier() {
     const {Prettier} = await import('../libraries/prettier')
     const prettier = new Prettier(this.type)
-    this.log(await prettier.installPackage().catch(error => this.log(error)))
-    this.log(await prettier.addPrettierConfig().catch(error => this.log(error)))
-    this.log(await prettier.rewritePackageJson().catch(error => this.log(error)))
+    this.log(await prettier.installPackage().catch(error => error))
+    this.log(await prettier.addPrettierConfig().catch(error => error))
+    this.log(await prettier.rewritePackageJson().catch(error => error))
   }
 }
