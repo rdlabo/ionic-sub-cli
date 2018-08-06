@@ -17,24 +17,24 @@ export class Lint {
         exec('npm install codelyzer --save-dev', (error: any) => {
           if (error) {
             reject(chalk.red('Sorry. failed npm install. You should exec npm install codelyzer --save-dev'))
-          } else {
-            reject('[' + chalk.green('OK') + '] ' + 'Complete install codelyzer --save-dev')
+            return
           }
           cli.action.stop()
-          resolve('npm installed codelyzer')
+          resolve('[' + chalk.green('OK') + '] ' + 'Complete install codelyzer --save-dev')
         })
       })
     } else {
-      return new Promise(resolve => resolve('need install codelyzer is ionic-angular only'))
+      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'ionic-angular install codelyzer only'))
     }
   }
-  addTslint() {
+  addLint() {
     return new Promise((resolve, reject) => {
       fs.writeFile('./tslint.json', tsLintRule, (error: any) => {
         if (error) {
-          reject(chalk.red('Sorry! ionic-sub did not re-write tslint-rule.'))
+          reject(chalk.red('Sorry! ionic-sub did not rewrite ./tslint.json.'))
+          return
         }
-        resolve('[' + chalk.green('OK') + '] ' + 'Complete re-write tslint-rule.')
+        resolve('[' + chalk.green('OK') + '] ' + 'Complete rewrite ./tslint.json.')
       })
     })
   }

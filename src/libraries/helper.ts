@@ -6,10 +6,12 @@ export class Helper {
       fs.readFile('./ionic.config.json', 'utf8', (error: any, data: string) => {
         if (error) {
           reject('Sorry! ionic-sub CLI can only be run in an Ionic project directory.')
+          return
         }
         const config = JSON.parse(data)
         if (!config.type) {
           reject('Sorry! ionic-sub CLI could not get Ionic type from ionic.config.json')
+          return
         }
         resolve(config.type)
       })

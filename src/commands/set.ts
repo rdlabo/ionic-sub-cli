@@ -1,5 +1,4 @@
 import {Command, flags} from '@oclif/command'
-const chalk = require('chalk')
 
 export default class Set extends Command {
   static description = 'auto set config. input arg `lint` or `prettier`' +
@@ -18,24 +17,35 @@ export default class Set extends Command {
   async run() {
     const {args} = this.parse(Set)
     const {Helper} = await import('../libraries/helper')
-    const type = await new Helper().getIonicType().catch(error => {
+    this.type = await new Helper().getIonicType().catch(error => {
       this.error(error)
+      this.exit(200)
     })
-
-    if (type !== 'ionic-angular' && type !== 'angular') {
+    if (this.type !== 'ionic-angular' && this.type !== 'angular') {
       this.error('Sorry! ionic-sub CLI can only be run in ionic-angular or angular only')
     }
-    if (args.package === 'lint') {
-      const {Lint} = await import('../libraries/lint')
-      const lint = new Lint(type)
-      this.log(await lint.installPackage().catch(error => {
-        this.log(error)
-      }))
-      this.log(await lint.addTslint().catch(error => {
-        this.log(error)
-      }))
-    } else if (args.package === 'prettier') {
-      this.prettier().catch()
+
+    switch (args.package) {
+      case 'lint':
+        this.lint().catch()
+        break
+      case 'prettier':
+        this.prettier().catch()
+        break
+      default:
     }
+  }
+  async lint() {
+    const {Lint} = await import('../libraries/lint')
+    const lint = new Lint(this.type)
+    this.log(await lint.installPackage().catch(error => this.log(error)))
+    this.log(await lint.addLint().catch(error => this.log(error)))
+  }
+  async prettier() {
+    const {Prettier} = await import('../libraries/prettier')
+    const prettier = new Prettier(this.type)
+    this.log(await prettier.installPackage().catch(error => this.log(error)))
+    this.log(await prettier.addPrettierConfig().catch(error => this.log(error)))
+    this.log(await prettier.rewritePackageJson().catch(error => this.log(error)))
   }
 }
