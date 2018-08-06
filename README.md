@@ -27,16 +27,16 @@ $ ionic-sub set prettier
 
 This command rewrite tslint.json base of Angular 6.
 
-- npm install codelyzer --save-dev (v3:ionic-angular only)
+- `npm install codelyzer --save-dev (v3:ionic-angular only)`
 - rewrite ./tslint.json
 
 ### set prettier
 
 import prettier and auto set pre-commit.
 
-- npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev
+- `npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev`
 - add prettier.config.js
-- add package.json script 'prettier' and 'pre-commit'
+- add package.json script `prettier` and `pre-commit`
 
 
 ## License
