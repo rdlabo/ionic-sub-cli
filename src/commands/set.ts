@@ -38,13 +38,13 @@ export default class Set extends Command {
     }
   }
   async lint() {
-    const {Lint} = await import('../libraries/lint')
+    const {Lint} = await import('../libraries/set/lint')
     const lint = new Lint(this.type)
     this.log(await lint.installPackage().catch(error => error))
     this.log(await lint.addLint().catch(error => error))
   }
   async prettier() {
-    const {Prettier} = await import('../libraries/prettier')
+    const {Prettier} = await import('../libraries/set/prettier')
     const prettier = new Prettier(this.type)
     this.log(await prettier.installPackage().catch(error => error))
     this.log(await prettier.addPrettierConfig().catch(error => error))
