@@ -38,9 +38,9 @@ export default class Set extends Command {
         this.alias().catch()
         break
       case 'all':
-        this.lint().catch()
-        this.prettier().catch()
-        this.alias().catch()
+        await this.lint().catch()
+        await this.prettier().catch()
+        await this.alias().catch()
         break
       default:
         this.error(args.package + ' args is not fount.')
@@ -62,6 +62,7 @@ export default class Set extends Command {
   async alias() {
     const {Alias} = await import('../libraries/set/alias')
     const alias = new Alias(this.type)
+    this.log(await alias.installPackage().catch(error => error))
     this.log(await alias.addWebpack().catch(error => error))
     this.log(await alias.rewritePackageJson().catch(error => error))
     this.log(await alias.rewriteTsconfigJson().catch(error => error))

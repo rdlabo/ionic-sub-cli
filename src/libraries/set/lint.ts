@@ -23,7 +23,7 @@ export class Lint {
         })
       })
     } else {
-      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'ionic-angular install codelyzer only'))
+      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Do not need package install.'))
     }
   }
   addLint() {

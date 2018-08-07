@@ -1,4 +1,7 @@
+import cli from 'cli-ux'
+
 const chalk = require('chalk')
+const exec = require('child_process').exec
 const fs = require('fs')
 
 export class Alias {
@@ -8,6 +11,23 @@ export class Alias {
 
     require.extensions['.txt'] = (module, filename) => {
       module.exports = fs.readFileSync(filename, 'utf8')
+    }
+  }
+  installPackage(): Promise<string> {
+    if (this.type === 'ionic-angular') {
+      cli.action.start('> ' + chalk.green('npm install semver-dsl.'))
+      return new Promise((resolve, reject) => {
+        exec('npm install semver-dsl', (error: any) => {
+          if (error) {
+            reject(chalk.red('Sorry. failed npm install. You should exec npm install semver-dsl.'))
+            return
+          }
+          cli.action.stop()
+          resolve('[' + chalk.green('OK') + '] ' + 'Complete install semver-dsl.')
+        })
+      })
+    } else {
+      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Do not need package install.'))
     }
   }
 
