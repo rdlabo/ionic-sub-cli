@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 export default class Set extends Command {
-  static description = 'auto set config. input arg `lint` or `prettier`' +
+  static description = 'auto set config. input arg `lint` or `prettier` or `alias`. ' +
     'ex) ionic-sub set lint'
 
   static flags = {
@@ -34,7 +34,11 @@ export default class Set extends Command {
       case 'prettier':
         this.prettier().catch()
         break
+      case 'alias':
+        this.alias().catch()
+        break
       default:
+        this.error(args.package + ' args is not fount.')
     }
   }
   async lint() {
@@ -49,5 +53,13 @@ export default class Set extends Command {
     this.log(await prettier.installPackage().catch(error => error))
     this.log(await prettier.addPrettierConfig().catch(error => error))
     this.log(await prettier.rewritePackageJson().catch(error => error))
+  }
+  async alias() {
+    const {Alias} = await import('../libraries/set/alias')
+    const alias = new Alias(this.type)
+    this.log(await alias.addWebpack().catch(error => error))
+    this.log(await alias.rewritePackageJson().catch(error => error))
+    this.log(await alias.rewriteTsconfigJson().catch(error => error))
+    this.log(await alias.addEnvironmentFile().catch(error => error))
   }
 }
