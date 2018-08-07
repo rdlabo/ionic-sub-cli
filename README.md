@@ -21,22 +21,52 @@ Just run the command!
 ```bash
 $ ionic-sub set lint
 $ ionic-sub set prettier
+$ ionic-sub set alias
 ```
 
-### set lint
-
+### set
+#### set lint
 This command rewrite tslint.json base of Angular 6.
 
 - `npm install codelyzer --save-dev (v3:ionic-angular only)`
 - rewrite ./tslint.json
 
-### set prettier
+#### set prettier
 
-import prettier and auto set pre-commit.
+Import prettier and auto set pre-commit.
 
 - `npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev`
 - add prettier.config.js
 - add package.json script `prettier` and `pre-commit`
+
+#### set alias
+__* NOW v3 ONLY COMMAND__
+
+You can use `@` alias. `@` connect `src` folder. so you can write.
+
+```
+import { HomePage } from '../pages/home/home';
+↓
+import { HomePage } from '@/pages/home/home';
+```
+
+```
+import { Example } from '../../providers/example/example';
+↓
+import { HomePage } from '@/providers/example/example';
+```
+
+And you can use environment file. This change `--prod` or none.
+
+```js
+import { environment } from '@app/environment';
+
+console.log(environment)
+```
+
+Environment file create `src/environments`. If you add command `--prod`, environment is `environment/environment.prod.ts`. 
+Or nothing, environment is `environment/environment.dev.ts`.
+
 
 
 ## License
