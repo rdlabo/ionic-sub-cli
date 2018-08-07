@@ -28,7 +28,7 @@ export class Lint {
   }
   addLint() {
     return new Promise((resolve, reject) => {
-      const tslint = require('../template/tslint.json')
+      const tslint = require('../../template/tslint.json')
       fs.writeFile('./tslint.json', JSON.stringify(tslint, null, '  '), (error: any) => {
         if (error) {
           reject(chalk.red('Sorry! ionic-sub did not rewrite ./tslint.json.'))
