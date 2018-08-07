@@ -1,29 +1,38 @@
-import {fancy} from 'fancy-test'
 import {expect, test} from '@oclif/test'
 const chalk = require('chalk')
 const fs = require('fs')
+const mock = require('mock-fs')
+import {Lint} from '../../src/libraries/set/lint'
 
-describe('set', () => {
+describe('Failed set lint', () => {
   test
     .stdout()
     .command(['set', 'lint'])
     .exit(412)
     .it('exit with status 412 when not found ionic')
+})
 
-  fancy
-    .add('create ionic.config.json', () => {
-      const config = {name: 'test1', integrations: {}, type: 'ionic-angular'}
-      fs.writeFileSync('./ionic.config.json', JSON.stringify(config, null, '  '))
+describe('Testing libraries/set', () => {
+  before(done => {
+    mock({
+      'ionic.config.json': fs.readFileSync('./mock/ionic-angular/ionic.config.json', 'utf-8'),
+      'package.json': fs.readFileSync('./mock/ionic-angular/package.json', 'utf-8'),
+      src: {
+        template: {
+          'tslint.json': fs.readFileSync('./src/template/tslint.json', 'utf-8')
+        }
+      }
     })
-    .do(() => {
-      test
-        .stdout()
-        .command(['set', 'lint', '--dry'])
-        .it('runs set lint --dry', ctx => {
-          expect(ctx.stdout).to.contain('hello jeff')
-        })
-    })
-    .it('delete ionic.config.json', () => {
-      fs.unlinkSync('./ionic.config.json')
-    })
+    done()
+  })
+  after(done => {
+    mock.restore()
+    done()
+  })
+
+  it('Testing libraries/set/lint', async () => {
+    const lint = new Lint('ionic-angular', {dry: true})
+    expect(await lint.addLint()).to.include(chalk.green('OK'))
+    expect('lint.installPackage()')
+  })
 })

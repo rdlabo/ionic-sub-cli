@@ -13,15 +13,16 @@ export class Lint {
 
   installPackage(): Promise<string> {
     if (this.type === 'ionic-angular') {
-      cli.action.start('> ' + chalk.green('npm install codelyzer --save-dev'))
+      const option = (this.flags.dry) ? ' --dry-run' : ''
+      cli.action.start('> ' + chalk.green('npm install codelyzer --save-dev' + option))
       return new Promise((resolve, reject) => {
-        exec('npm install codelyzer --save-dev' + (this.flags.dry) ? ' --dry-run' : '', (error: any) => {
+        exec('npm install codelyzer --save-dev' + option, (error: any) => {
           if (error) {
-            reject(chalk.red('Sorry. failed npm install. You should exec npm install codelyzer --save-dev'))
+            reject(chalk.red('Sorry. failed npm install. You should exec npm install codelyzer --save-dev' + option))
             return
           }
           cli.action.stop()
-          resolve('[' + chalk.green('OK') + '] ' + 'Complete install codelyzer --save-dev')
+          resolve('[' + chalk.green('OK') + '] ' + 'Complete install codelyzer --save-dev' + option)
         })
       })
     } else {
