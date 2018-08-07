@@ -19,7 +19,12 @@ describe('Testing libraries/set', () => {
       'package.json': fs.readFileSync('./mock/ionic-angular/package.json', 'utf-8'),
       src: {
         template: {
-          'tslint.json': fs.readFileSync('./src/template/tslint.json', 'utf-8')
+          'tslint.json': fs.readFileSync('./src/template/tslint.json', 'utf-8'),
+          'ionic-angular': {
+            'environment.dev.ts.txt': fs.readFileSync('./src/template/ionic-angular/environment.dev.ts.txt', 'utf-8'),
+            'environment.prod.ts.txt': fs.readFileSync('./src/template/ionic-angular/environment.prod.ts.txt', 'utf-8'),
+            'webpack.config.txt': fs.readFileSync('./src/template/ionic-angular/webpack.config.txt', 'utf-8'),
+          }
         }
       }
     })

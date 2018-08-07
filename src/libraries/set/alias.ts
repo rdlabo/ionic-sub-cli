@@ -33,7 +33,7 @@ export class Alias {
     }
   }
 
-  addWebpack() {
+  addWebpack(): Promise<string> {
     if (this.type === 'ionic-angular') {
       return new Promise((resolve, reject) => {
         fs.writeFile('./webpack.config.js', require('../../template/ionic_angular/webpack.config.txt'), (error: any) => {

@@ -29,7 +29,7 @@ export class Lint {
       return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Do not need package install.'))
     }
   }
-  addLint() {
+  addLint(): Promise<string> {
     return new Promise((resolve, reject) => {
       const tslint = require('../../template/tslint.json')
       fs.writeFile('./tslint.json', JSON.stringify(tslint, null, '  '), (error: any) => {
