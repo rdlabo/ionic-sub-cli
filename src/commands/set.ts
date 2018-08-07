@@ -1,31 +1,36 @@
 import {Command, flags} from '@oclif/command'
+const chalk = require('chalk')
+const subcommands = chalk.green('lint') + ', ' + chalk.green('prettier') + ', ' + chalk.green('alias') + ', ' + chalk.green('all')
 
 export default class Set extends Command {
-  static description = 'auto set config. input arg `lint` or `prettier` or `alias` or `all`. ' +
-    'ex) ionic-sub set lint'
+  static description = 'Commands for set project auto. (subcommands: ' + subcommands + ')'
+
+  static examples = ['$ ionic-sub set ' + chalk.green('lint')]
 
   static flags = {
     help: flags.help({char: 'h'}),
+    dry: flags.boolean({char: 'd'}),
   }
 
   static args = [{
     name: 'package',
-    description: 'input `lint` or `prettier`',
+    description: subcommands,
     required: true
   }]
   public type: string = ''
+  public flags: object = {}
 
   async run() {
-    const {args} = this.parse(Set)
+    const {args, flags} = this.parse(Set)
     const {Helper} = await import('../libraries/helper')
     this.type = await new Helper().getIonicType().catch(error => {
-      this.error(error)
-      this.exit(200)
+      this.error(error, {exit: 412})
       return error
     })
     if (this.type !== 'ionic-angular' && this.type !== 'angular') {
       this.error('Sorry! ionic-sub CLI can only be run in ionic-angular or angular only')
     }
+    this.flags = flags
 
     switch (args.package) {
       case 'lint':
@@ -48,20 +53,20 @@ export default class Set extends Command {
   }
   async lint() {
     const {Lint} = await import('../libraries/set/lint')
-    const lint = new Lint(this.type)
+    const lint = new Lint(this.type, this.flags)
     this.log(await lint.installPackage().catch(error => error))
     this.log(await lint.addLint().catch(error => error))
   }
   async prettier() {
     const {Prettier} = await import('../libraries/set/prettier')
-    const prettier = new Prettier(this.type)
+    const prettier = new Prettier(this.type, this.flags)
     this.log(await prettier.installPackage().catch(error => error))
     this.log(await prettier.addPrettierConfig().catch(error => error))
     this.log(await prettier.rewritePackageJson().catch(error => error))
   }
   async alias() {
     const {Alias} = await import('../libraries/set/alias')
-    const alias = new Alias(this.type)
+    const alias = new Alias(this.type, this.flags)
     this.log(await alias.installPackage().catch(error => error))
     this.log(await alias.addWebpack().catch(error => error))
     this.log(await alias.rewritePackageJson().catch(error => error))

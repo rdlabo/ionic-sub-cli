@@ -13,6 +13,7 @@
     "@oclif/plugin-help": "^2",
     "chalk": "^2.4.1",
     "cli-ux": "^4.7.3",
+    "fancy-test": "^1.2.0",
     "tslib": "^1"
   },
   "devDependencies": {

@@ -5,15 +5,17 @@ const exec = require('child_process').exec
 
 export class Lint {
   public type: string
-  constructor(type: string) {
+  public flags: any
+  constructor(type: string, flags: object) {
     this.type = type
+    this.flags = flags
   }
 
   installPackage(): Promise<string> {
     if (this.type === 'ionic-angular') {
       cli.action.start('> ' + chalk.green('npm install codelyzer --save-dev'))
       return new Promise((resolve, reject) => {
-        exec('npm install codelyzer --save-dev', (error: any) => {
+        exec('npm install codelyzer --save-dev' + (this.flags.dry) ? ' --dry-run' : '', (error: any) => {
           if (error) {
             reject(chalk.red('Sorry. failed npm install. You should exec npm install codelyzer --save-dev'))
             return

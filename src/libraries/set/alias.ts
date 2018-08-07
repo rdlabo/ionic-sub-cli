@@ -6,8 +6,10 @@ const fs = require('fs')
 
 export class Alias {
   public type: string
-  constructor(type: string) {
+  public flags: any
+  constructor(type: string, flags: object) {
     this.type = type
+    this.flags = flags
 
     require.extensions['.txt'] = (module, filename) => {
       module.exports = fs.readFileSync(filename, 'utf8')
@@ -17,7 +19,7 @@ export class Alias {
     if (this.type === 'ionic-angular') {
       cli.action.start('> ' + chalk.green('npm install semver-dsl.'))
       return new Promise((resolve, reject) => {
-        exec('npm install semver-dsl', (error: any) => {
+        exec('npm install semver-dsl' + (this.flags.dry) ? ' --dry-run' : '', (error: any) => {
           if (error) {
             reject(chalk.red('Sorry. failed npm install. You should exec npm install semver-dsl.'))
             return

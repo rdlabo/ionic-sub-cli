@@ -5,14 +5,16 @@ const fs = require('fs')
 
 export class Prettier {
   public type: string
-  constructor(type: string) {
+  public flags: any
+  constructor(type: string, flags: object) {
     this.type = type
+    this.flags = flags
   }
 
   installPackage(): Promise<string> {
     cli.action.start('> ' + chalk.green('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev'))
     return new Promise((resolve, reject) => {
-      exec('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev', (error: any) => {
+      exec('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev' + (this.flags.dry) ? ' --dry-run' : '', (error: any) => {
         cli.action.stop()
         if (error) {
           reject(chalk.red('Sorry. failed npm install. You should exec `npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev`'))
