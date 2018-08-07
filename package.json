@@ -1,7 +1,7 @@
 {
   "name": "@rdlabo/ionic-sub",
   "description": "operate ionic project",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-sub": "./bin/run"
