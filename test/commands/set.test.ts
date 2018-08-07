@@ -2,7 +2,7 @@ import {expect, test} from '@oclif/test'
 const chalk = require('chalk')
 const fs = require('fs')
 const mock = require('mock-fs')
-import {Lint} from '../../src/libraries/set/lint'
+import {Lint} from '../../src/libraries'
 
 describe('Failed set lint', () => {
   test
