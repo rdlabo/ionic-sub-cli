@@ -58,7 +58,7 @@ import { HomePage } from '@/providers/example/example';
 
 And you can use environment file. This change `--prod` or none.
 
-```js
+```
 import { environment } from '@app/environment';
 
 console.log(environment)

@@ -1,12 +1,12 @@
 {
   "name": "@rdlabo/ionic-sub",
   "description": "operate ionic project",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Masahiko Sakakibara",
   "bin": {
     "ionic-sub": "./bin/run"
   },
-  "bugs": "https://github.com/rdlabo/ionic-sub/issues",
+  "bugs": "https://github.com/rdlabo/ionic-sub-cli/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -39,7 +39,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/rdlabo/ionic-sub",
+  "homepage": "https://github.com/rdlabo/ionic-sub-cli",
   "keywords": [
     "oclif"
   ],
@@ -52,11 +52,11 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/rdlabo/ionic-sub",
+  "repository": "https://github.com/rdlabo/ionic-sub-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
     "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
-    "prepack": "rm -rf lib && tsc && oclif-dev manifest && oclif-dev readme && npm shrinkwrap",
+    "prepack": "rm -rf lib && tsc && oclif-dev manifest && oclif-dev readme && npm shrinkwrap && cp -r src/template lib/template",
     "prepare": "rm -rf lib && tsc",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
