@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 export default class Set extends Command {
-  static description = 'auto set config. input arg `lint` or `prettier` or `alias`. ' +
+  static description = 'auto set config. input arg `lint` or `prettier` or `alias` or `all`. ' +
     'ex) ionic-sub set lint'
 
   static flags = {
@@ -35,6 +35,11 @@ export default class Set extends Command {
         this.prettier().catch()
         break
       case 'alias':
+        this.alias().catch()
+        break
+      case 'all':
+        this.lint().catch()
+        this.prettier().catch()
         this.alias().catch()
         break
       default:
