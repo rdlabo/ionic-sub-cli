@@ -40,7 +40,6 @@ Import prettier and auto set pre-commit.
 - add package.json script `prettier` and `pre-commit`
 
 #### set alias
-__* NOW v3 ONLY COMMAND__
 
 You can use `@` alias. `@` connect `src` folder. so you can write.
 
@@ -56,7 +55,8 @@ import { Example } from '../../providers/example/example';
 import { HomePage } from '@/providers/example/example';
 ```
 
-And you can use environment file. This change `--prod` or none.
+And you can use environment file. This change `--prod` or none. 
+(__This is ionic-angular(v3) Only. angular(v4) have default environment file__)
 
 ```
 import { environment } from '@app/environment';

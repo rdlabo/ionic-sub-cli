@@ -45,7 +45,7 @@ export class Alias {
         })
       })
     } else {
-      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Sorry. Implementation of type angular is still.'))
+      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Do not need to create webpack.config.js.'))
     }
   }
 
@@ -71,7 +71,7 @@ export class Alias {
         })
       })
     } else {
-      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Sorry. Implementation of type angular is still.'))
+      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Do not need to rewrite package.json script'))
     }
   }
 
@@ -100,7 +100,27 @@ export class Alias {
         })
       })
     } else {
-      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Sorry. Implementation of type angular is still.'))
+      return new Promise((resolve, reject) => {
+        fs.readFile('./tsconfig.json', 'utf8', (error: any, data: string) => {
+          if (error) {
+            reject(chalk.red('Sorry! ionic-sub did not read tsconfig.json.'))
+            return
+          }
+
+          const tsconfig_json = JSON.parse(data)
+          tsconfig_json.compilerOptions.baseUrl = 'src'
+          tsconfig_json.compilerOptions.paths = {
+            '@/*': ['app/*']
+          }
+          fs.writeFile('./tsconfig.json', JSON.stringify(tsconfig_json, null, '  '), (error: any) => {
+            if (error) {
+              reject(chalk.red('Sorry! ionic-sub did not rewrite tsconfig.json'))
+              return
+            }
+            resolve('[' + chalk.green('OK') + '] ' + 'Rewrite tsconfig.json. Add baseUrl and path.')
+          })
+        })
+      })
     }
   }
   addEnvironmentFile(): Promise<string> {
@@ -127,7 +147,7 @@ export class Alias {
         })
       })
     } else {
-      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Sorry. Implementation of type angular is still.'))
+      return new Promise(resolve => resolve('[' + chalk.green('OK') + '] ' + 'Do not need to create environment file.'))
     }
   }
 }
