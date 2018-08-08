@@ -1,6 +1,7 @@
 import {Command, flags} from '@oclif/command'
 const chalk = require('chalk')
 const subcommands = chalk.green('lint') + ', ' + chalk.green('prettier') + ', ' + chalk.green('alias') + ', ' + chalk.green('all')
+import {Alias, Lint, Prettier} from '../libraries'
 
 export default class Set extends Command {
   static description = 'Commands for set project auto. (subcommands: ' + subcommands + ')'
@@ -51,20 +52,17 @@ export default class Set extends Command {
     }
   }
   async lint() {
-    const {Lint} = await import('../libraries')
     const lint = new Lint(this.type, this.flags)
     this.log(await lint.installPackage().catch(error => error))
     this.log(await lint.addLint().catch(error => error))
   }
   async prettier() {
-    const {Prettier} = await import('../libraries')
     const prettier = new Prettier(this.type, this.flags)
     this.log(await prettier.installPackage().catch(error => error))
     this.log(await prettier.addPrettierConfig().catch(error => error))
     this.log(await prettier.rewritePackageJson().catch(error => error))
   }
   async alias() {
-    const {Alias} = await import('../libraries')
     const alias = new Alias(this.type, this.flags)
     this.log(await alias.installPackage().catch(error => error))
     this.log(await alias.addWebpack().catch(error => error))
