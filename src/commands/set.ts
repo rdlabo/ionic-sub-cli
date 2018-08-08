@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 const chalk = require('chalk')
 const subcommands = chalk.green('lint') + ', ' + chalk.green('prettier') + ', ' + chalk.green('alias') + ', ' + chalk.green('all')
-import {Alias, Lint, Prettier} from '../libraries'
+import {Alias, Helper, Lint, Prettier} from '../libraries'
 
 export default class Set extends Command {
   static description = 'Commands for set project auto. (subcommands: ' + subcommands + ')'
@@ -22,7 +22,6 @@ export default class Set extends Command {
 
   async run() {
     const {args, flags} = this.parse(Set)
-    const {Helper} = await import('../libraries')
     this.type = await new Helper().getIonicType().catch(error => {
       this.error(error, {exit: 412})
       return error
