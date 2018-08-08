@@ -27,16 +27,21 @@ export class Helper {
   }
   public async checkNpmVersion(pkg: string, command: string) {
     return new Promise(async (resolve, reject) => {
-      const v = await execSync('npm show ' + pkg + ' version').toString().match(/(\d|\.)+/)
-      const l = await execSync(command + ' -v').toString().match(/(\d|\.)+/)
-      if (l && l[0] && v && v[0]) {
-        if (v[0] > l[0]) {
-          const message = 'Local npm package `' + pkg + '` is old (Local ' + v[0] + ' > New ' + l[0] + '). Please exec `npm install ' + pkg + ' -g`'
-          reject(chalk.red('[Warning] ') + message)
-          return
+      try {
+        const v = await execSync('npm show ' + pkg + ' version').toString().match(/(\d|\.)+/)
+        const l = await execSync(command + ' -v').toString().match(/(\d|\.)+/)
+        if (l && l[0] && v && v[0]) {
+          if (v[0] > l[0]) {
+            const message = 'Local npm package `' + pkg + '` is old (Local ' + v[0] + ' > New ' + l[0] + '). Please exec `npm install ' + pkg + ' -g`'
+            reject(chalk.red('[Warning] ') + message)
+            return
+          }
         }
+        resolve()
+      } catch {
+        reject('[Warning] You should exec `npm install ' + pkg + ' -g` or set path.')
+        return
       }
-      resolve()
     })
   }
 }
