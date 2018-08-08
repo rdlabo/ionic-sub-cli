@@ -17,15 +17,15 @@ export class Alias {
   }
   installPackage(): Promise<string> {
     if (this.type === 'ionic-angular') {
-      cli.action.start('> ' + chalk.green('npm install semver-dsl.'))
+      cli.action.start('> ' + chalk.green('npm install semver-dsl --save-dev.'))
       return new Promise((resolve, reject) => {
-        exec('npm install semver-dsl' + (this.flags.dry) ? ' --dry-run' : '', (error: any) => {
+        exec('npm install semver-dsl --save-dev', (error: any) => {
           if (error) {
-            reject(chalk.red('Sorry. failed npm install. You should exec npm install semver-dsl.'))
+            reject(chalk.red('Sorry. failed npm install. You should exec `npm install semver-dsl --save-dev`.'))
             return
           }
           cli.action.stop()
-          resolve('[' + chalk.green('OK') + '] ' + 'Complete install semver-dsl.')
+          resolve('[' + chalk.green('OK') + '] ' + 'Complete install semver-dsl --save-dev.')
         })
       })
     } else {
