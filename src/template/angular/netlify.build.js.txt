@@ -49,9 +49,7 @@ class method {
   }
 
   createRobot(){
-    const robot = 'User-Agent: *' +
-      'Allow: /' +
-      'Host: ' + this.appDomain;
+    const robot = 'User-Agent: *\nAllow: /\nHost: ' + this.appDomain;
     fs.writeFileSync(this.publicDir + 'robot.txt', robot);
   }
 
@@ -63,7 +61,7 @@ class method {
     }
   }
 
-  createJavaScriptFileServerPush(fileArray, subDir = null){
+  createJavaScriptFileServerPush(fileArray, subDir = ''){
     let pushFile = '/*\n';
     fileArray.forEach(file => {
       if(this.__getFileName(file, subDir)){

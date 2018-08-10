@@ -121,8 +121,8 @@
       true,
       "element",
       "app",
-      "kebab-case",
-      "page"
+      "page",
+      "kebab-case"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
