@@ -25,8 +25,14 @@ export class Formatter {
     })
   }
   addPrettierConfig(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      fs.writeFile('./prettier.config.js', 'module.exports =require(\'@kaizenplatform/prettier-config\');', (error: any) => {
+    return new Promise(async (resolve, reject) => {
+      await fs.access('./prettier.config.js', fs.constants.R_OK || fs.constants.W_OK, (error: any) => {
+        if (!error) {
+          resolve('[' + chalk.green('OK') + '] ' + './prettier.config.js is exist Do not overwrite.')
+          return
+        }
+      })
+      await fs.writeFile('./prettier.config.js', 'module.exports =require(\'@kaizenplatform/prettier-config\');', (error: any) => {
         if (error) {
           reject(chalk.red('Sorry! ionic-sub did not write prettier.config.js.'))
           return
@@ -44,22 +50,15 @@ export class Formatter {
         }
 
         const package_json = JSON.parse(data)
-        if (!package_json.scripts.formatter) {
-          package_json.scripts.formatter = 'prettier --parser typescript --single-quote --write "./**/*.ts"'
-        }
-
-        if (!package_json['pre-commit']) {
-          package_json['pre-commit'] = [
-            'prettier'
-          ]
-        }
+        if (!package_json.scripts.formatter) package_json.scripts.formatter = 'prettier --parser typescript --single-quote --write "./**/*.ts"'
+        if (!package_json['pre-commit']) package_json['pre-commit'] = ['formatter']
 
         fs.writeFile('./package.json', JSON.stringify(package_json, null, '  '), (error: any) => {
           if (error) {
-            reject(chalk.red('Sorry! ionic-sub did not re-write package.json/'))
+            reject(chalk.red('Sorry! ionic-sub did not rewrite package.json.'))
             return
           }
-          resolve('[' + chalk.green('OK') + '] ' + 'Rewrite package.json script. Add prettier and pre-commit.')
+          resolve('[' + chalk.green('OK') + '] ' + 'Rewrite package.json script. Add prettier and pre-commit.(not overwrite)')
         })
       })
     })

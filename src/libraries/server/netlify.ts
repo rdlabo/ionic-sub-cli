@@ -14,7 +14,13 @@ export class Netlify {
   }
 
   installBuildFile(): Promise<string> {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
+      await fs.access('./netlify.build.js', fs.constants.R_OK || fs.constants.W_OK, (error: any) => {
+        if (!error) {
+          resolve('[' + chalk.green('OK') + '] ' + './netlify.build.js is exist. Do not overwrite.')
+          return
+        }
+      })
       let filePath: string
       if (this.type === 'ionic-angular') {
         filePath = './../../template/ionic_angular/netlify.build.js'
