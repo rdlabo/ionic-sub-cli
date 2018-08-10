@@ -1,4 +1,4 @@
 export {Lint} from './set/lint'
 export {Alias} from './set/alias'
-export {Prettier} from './set/prettier'
+export {Formatter} from './set/formatter'
 export {Helper} from './helper'

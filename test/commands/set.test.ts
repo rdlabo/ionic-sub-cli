@@ -2,7 +2,7 @@ import {expect, test} from '@oclif/test'
 const chalk = require('chalk')
 const fs = require('fs')
 const mock = require('mock-fs')
-import {Alias, Lint, Prettier} from '../../src/libraries'
+import {Alias, Formatter, Lint} from '../../src/libraries'
 
 describe('Failed set lint', () => {
   test
@@ -43,7 +43,7 @@ describe('Testing libraries/set --type=ionic-angular', () => {
   })
 
   it('Testing libraries/set/prettier', async () => {
-    const Lib = new Prettier('ionic-angular', {})
+    const Lib = new Formatter('ionic-angular', {})
     expect('installPackage()')
     expect(await Lib.addPrettierConfig()).to.include(chalk.green('OK'))
     expect(await Lib.rewritePackageJson()).to.include(chalk.green('OK'))
@@ -85,7 +85,7 @@ describe('Testing libraries/set --type=angular', () => {
   })
 
   it('Testing libraries/set/prettier', async () => {
-    const Lib = new Prettier('angular', {})
+    const Lib = new Formatter('angular', {})
     expect('installPackage()')
     expect(await Lib.addPrettierConfig()).to.include(chalk.green('OK'))
     expect(await Lib.rewritePackageJson()).to.include(chalk.green('OK'))

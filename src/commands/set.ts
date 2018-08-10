@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 const chalk = require('chalk')
-const subcommands = chalk.green('lint') + ', ' + chalk.green('prettier') + ', ' + chalk.green('alias') + ', ' + chalk.green('all')
-import {Alias, Helper, Lint, Prettier} from '../libraries'
+const subcommands = chalk.green('lint') + ', ' + chalk.green('formatter') + ', ' + chalk.green('alias') + ', ' + chalk.green('all')
+import {Alias, Formatter, Helper, Lint} from '../libraries'
 
 export default class Set extends Command {
   static description = 'Commands for set project auto. (subcommands: ' + subcommands + ')'
@@ -35,15 +35,15 @@ export default class Set extends Command {
       case 'lint':
         this.lint().catch()
         break
-      case 'prettier':
-        this.prettier().catch()
+      case ('prettier' || 'formatter'):
+        this.formatter().catch()
         break
       case 'alias':
         this.alias().catch()
         break
       case 'all':
         await this.lint().catch()
-        await this.prettier().catch()
+        await this.formatter().catch()
         await this.alias().catch()
         break
       default:
@@ -55,11 +55,11 @@ export default class Set extends Command {
     this.log(await lint.installPackage().catch(error => error))
     this.log(await lint.addLint().catch(error => error))
   }
-  async prettier() {
-    const prettier = new Prettier(this.type, this.flags)
-    this.log(await prettier.installPackage().catch(error => error))
-    this.log(await prettier.addPrettierConfig().catch(error => error))
-    this.log(await prettier.rewritePackageJson().catch(error => error))
+  async formatter() {
+    const formatter = new Formatter(this.type, this.flags)
+    this.log(await formatter.installPackage().catch(error => error))
+    this.log(await formatter.addPrettierConfig().catch(error => error))
+    this.log(await formatter.rewritePackageJson().catch(error => error))
   }
   async alias() {
     const alias = new Alias(this.type, this.flags)

@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const exec = require('child_process').exec
 const fs = require('fs')
 
-export class Prettier {
+export class Formatter {
   public type: string
   public flags: any
   constructor(type: string, flags: object) {
@@ -44,8 +44,8 @@ export class Prettier {
         }
 
         const package_json = JSON.parse(data)
-        if (!package_json.scripts.prettier) {
-          package_json.scripts.prettier = 'prettier --parser typescript --single-quote --write "./**/*.ts"'
+        if (!package_json.scripts.formatter) {
+          package_json.scripts.formatter = 'prettier --parser typescript --single-quote --write "./**/*.ts"'
         }
 
         if (!package_json['pre-commit']) {
