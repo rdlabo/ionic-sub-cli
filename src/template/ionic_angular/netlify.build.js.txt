@@ -66,8 +66,8 @@ class method {
   createJavaScriptFileServerPush(fileArray, subDir = null){
     let pushFile = '/*\n';
     fileArray.forEach(file => {
-      if(this.__getFileName(file)){
-        pushFile += '  Link: <' + this.__getFileName(file, subDir) + '>; rel=preload; as=script\n';
+      if(this.__getFileName(file, subDir)){
+        pushFile += '  Link: <' + subDir + this.__getFileName(file, subDir) + '>; rel=preload; as=script\n';
       }
     });
     fs.writeFileSync(this.publicDir + '_headers', pushFile);
@@ -83,7 +83,7 @@ class method {
     }
   }
 
-  __getFileName(search, subDir = null){
+  __getFileName(search, subDir = ''){
     const files = fs.readdirSync(publicDir + subDir);
     const fileList = files.filter((file) => {
       return (file.match(new RegExp(search)) !== null)
