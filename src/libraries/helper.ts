@@ -32,7 +32,7 @@ export class Helper {
         const l = await execSync(command + ' -v').toString().match(/(\d|\.)+/)
         if (l && l[0] && v && v[0]) {
           if (v[0] > l[0]) {
-            const message = 'Local npm package `' + pkg + '` is old (Local ' + v[0] + ' > New ' + l[0] + '). Please exec `npm install ' + pkg + ' -g`'
+            const message = 'Local npm package `' + pkg + '` is old (New ' + v[0] + ' > Local ' + l[0] + '). Please exec `npm install ' + pkg + ' -g`'
             reject(chalk.red('[Warning] ') + message)
             return
           }
