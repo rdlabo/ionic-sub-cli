@@ -18,13 +18,14 @@ $ npm i @rdlabo/ionic-sub -g
 
 Just run the command!
 
+### set
 ```bash
 $ ionic-sub set lint
 $ ionic-sub set formatter
 $ ionic-sub set alias
+$ ionic-sub set all
 ```
 
-### set
 #### set lint
 This command rewrite tslint.json base of Angular 6.
 
@@ -60,7 +61,20 @@ console.log(environment)
 Environment file create `src/environments`. If you add command `--prod`, environment is `environment/environment.prod.ts`. 
 Or nothing, environment is `environment/environment.dev.ts`.
 
+### server
+```bash
+$ ionic-sub server netlify
+```
 
+#### server netlify
+This command create Netlify's build file. This file auto set this.
+
+1. create robot.txt.
+2. create _redirects for redirect to www.
+3. create _headers for ServerPush.
+4. change styles inline. (v4 only)
+
+You should add Build command node netlify.build.js in Netlify's deploy setting.
 
 ## License
 [MIT](https://github.com/k-kuwahara/ja-greetings/blob/master/LICENSE)
