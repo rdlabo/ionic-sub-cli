@@ -1,4 +1,5 @@
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/rdlabo)
 [![Build Status](https://travis-ci.org/rdlabo/ionic-sub-cli.svg?branch=master)](https://travis-ci.org/rdlabo/ionic-sub-cli)
 [![npm version](https://badge.fury.io/js/%40rdlabo%2Fionic-sub.svg)](https://badge.fury.io/js/%40rdlabo%2Fionic-sub)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
@@ -79,6 +80,10 @@ You should add Build command node netlify.build.js in Netlify's deploy setting.
 ## License
 [MIT](https://github.com/k-kuwahara/ja-greetings/blob/master/LICENSE)
 
+## Donation
+If this project help you reduce time to develop, you can give me a cup of coffee :) 
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/rdlabo)
 
 ## Others
 I'm waiting for you at any time, including code reviews, bug reports, feature additions, questions and more!
