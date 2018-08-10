@@ -64,7 +64,7 @@ Or nothing, environment is `environment/environment.dev.ts`.
 
 ### server
 ```bash
-$ ionic-sub server netlify
+$ ionic-sub server netlify -d example.com
 ```
 
 #### server netlify
