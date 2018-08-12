@@ -21,11 +21,15 @@ Just run the command!
 
 ### set
 ```bash
+$ ionic-sub set all
 $ ionic-sub set lint
 $ ionic-sub set formatter
 $ ionic-sub set alias
-$ ionic-sub set all
 ```
+
+#### set all
+This command run all set environment. 
+it's recommended;
 
 #### set lint
 This command rewrite tslint.json base of Angular 6.

@@ -35,7 +35,7 @@ export default class Set extends Command {
       case 'lint':
         this.lint().catch()
         break
-      case ('prettier' || 'formatter'):
+      case 'formatter':
         this.formatter().catch()
         break
       case 'alias':
