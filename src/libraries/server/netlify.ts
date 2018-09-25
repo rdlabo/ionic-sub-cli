@@ -2,12 +2,7 @@ const chalk = require('chalk')
 const fs = require('fs')
 
 export class Netlify {
-  public type: string
-  public flags: any
-  constructor(type: string, flags: object) {
-    this.type = type
-    this.flags = flags
-
+  constructor(public type: string, public flags: any) {
     require.extensions['.txt'] = (module, filename) => {
       module.exports = fs.readFileSync(filename, 'utf8')
     }

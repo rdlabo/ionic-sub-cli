@@ -47,7 +47,7 @@ export default class Set extends Command {
         await this.alias().catch()
         break
       default:
-        this.error(args.package + ' args is not fount.')
+        this.error(args.package + ' args is not found.')
     }
   }
   async lint() {
