@@ -12,15 +12,17 @@ export class Formatter {
   }
 
   installPackage(): Promise<string> {
-    cli.action.start('> ' + chalk.green('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev'))
+    const packages = ['prettier', '@kaizenplatform/prettier-config', 'pre-commit', 'lint-staged'].join('');
+    const installCmd = `npm install ${packages} --save-dev`;
+    cli.action.start('> ' + chalk.green(installCmd))
     return new Promise((resolve, reject) => {
-      exec('npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev', (error: any) => {
+      exec(installCmd, (error: any) => {
         cli.action.stop()
         if (error) {
-          reject(chalk.red('Sorry. failed npm install. You should exec `npm install prettier @kaizenplatform/prettier-config pre-commit --save-dev`'))
+          reject(chalk.red('Sorry. failed npm install. You should exec `' + installCmd + '`'))
           return
         }
-        resolve('[' + chalk.green('OK') + '] ' + 'Complete install prettier @kaizenplatform/prettier-config pre-commit --save-dev')
+        resolve('[' + chalk.green('OK') + '] ' + 'Complete install ' + packages)
       })
     })
   }
@@ -50,8 +52,17 @@ export class Formatter {
         }
 
         const package_json = JSON.parse(data)
+        if (!package_json.scripts['lint-staged']) package_json.scripts['lint-staged'] = 'lint-staged'
         if (!package_json.scripts.formatter) package_json.scripts.formatter = 'prettier --parser typescript --single-quote --write "./**/*.ts"'
-        if (!package_json['pre-commit']) package_json['pre-commit'] = ['formatter']
+        if (!package_json['pre-commit']) package_json['pre-commit'] = ['lint-staged']
+        if (!package_json['lint-staged']) {
+          package_json['lint-staged'] = {
+            '*.ts': [
+              'prettier --parser typescript --single-quote --write',
+              'git add'
+            ]
+          }
+        }
 
         fs.writeFile('./package.json', JSON.stringify(package_json, null, '  '), (error: any) => {
           if (error) {
