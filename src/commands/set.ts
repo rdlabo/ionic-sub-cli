@@ -17,7 +17,7 @@ export default class Set extends Command {
     description: subcommands,
     required: true
   }]
-  public type: string = ''
+  public type = ''
   public flags: object = {}
 
   async run() {
@@ -32,22 +32,22 @@ export default class Set extends Command {
     this.flags = flags
 
     switch (args.package) {
-      case 'lint':
-        this.lint().catch()
-        break
-      case 'formatter':
-        this.formatter().catch()
-        break
-      case 'alias':
-        this.alias().catch()
-        break
-      case 'all':
-        await this.lint().catch()
-        await this.formatter().catch()
-        await this.alias().catch()
-        break
-      default:
-        this.error(args.package + ' args is not found.')
+    case 'lint':
+      this.lint().catch()
+      break
+    case 'formatter':
+      this.formatter().catch()
+      break
+    case 'alias':
+      this.alias().catch()
+      break
+    case 'all':
+      await this.lint().catch()
+      await this.formatter().catch()
+      await this.alias().catch()
+      break
+    default:
+      this.error(args.package + ' args is not found.')
     }
   }
   async lint() {

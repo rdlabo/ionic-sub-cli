@@ -21,7 +21,7 @@ export default class Server extends Command {
     description: subcommands,
     required: true
   }]
-  public type: string = ''
+  public type = ''
   public flags: object = {}
 
   async run() {
@@ -36,11 +36,11 @@ export default class Server extends Command {
     this.flags = flags
 
     switch (args.package) {
-      case 'netlify':
-        this.netlify().catch()
-        break
-      default:
-        this.error(args.package + ' args is not fount.')
+    case 'netlify':
+      this.netlify().catch()
+      break
+    default:
+      this.error(args.package + ' args is not fount.')
     }
   }
   async netlify() {

@@ -5,6 +5,7 @@ const mock = require('mock-fs')
 import {Alias, Formatter, Lint} from '../../src/libraries'
 
 describe('Failed set lint', () => {
+  test.timeout(10000)
   test
     .stdout()
     .command(['set', 'lint'])

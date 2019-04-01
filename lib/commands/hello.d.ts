@@ -3,9 +3,9 @@ export default class Hello extends Command {
     static description: string;
     static examples: string[];
     static flags: {
-        help: import("../../../../../../Users/sakakibara/dev/ionic-sub/node_modules/@oclif/parser/lib/flags").IBooleanFlag<void>;
+        help: import("@oclif/parser/lib/flags").IBooleanFlag<void>;
         name: flags.IOptionFlag<string | undefined>;
-        force: import("../../../../../../Users/sakakibara/dev/ionic-sub/node_modules/@oclif/parser/lib/flags").IBooleanFlag<boolean>;
+        force: import("@oclif/parser/lib/flags").IBooleanFlag<boolean>;
     };
     static args: {
         name: string;
