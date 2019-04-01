@@ -55,7 +55,7 @@ class method {
 
   createRedirects(){
     if　(this.appDomain.split('.').length === 2){
-      const robot = 'https://' + this.appDomain + '/*  https://www.' + this.appDomain + '/:splat  301';
+      const robot = 'https://' + this.appDomain + '/*  https://www.' + this.appDomain + '/:splat  301\n/* /index.html 200';
       fs.writeFileSync(this.publicDir + '_redirects', robot);
       if (this.debug) fs.writeFileSync(this.publicDir + 'redirects.txt', robot);
     }
