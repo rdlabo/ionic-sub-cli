@@ -3,6 +3,13 @@
   "description": "operate ionic project",
   "version": "0.4.0",
   "author": "Masahiko Sakakibara",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
+    "posttest": "tslint -p test -t stylish",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme && npm shrinkwrap && cp -r src/template lib/template",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
   "bin": {
     "ionic-sub": "./bin/run"
   },
@@ -30,7 +37,7 @@
     "nyc": "^13",
     "ts-node": "^8",
     "tslint": "^5",
-    "typescript": "^3.3"
+    "typescript": "^3.2.2"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -55,13 +62,5 @@
     ]
   },
   "repository": "https://github.com/rdlabo/ionic-sub-cli",
-  "scripts": {
-    "postpack": "rm -f oclif.manifest.json npm-shrinkwrap.json",
-    "posttest": "tsc -p test --noEmit && tslint -p test -t stylish",
-    "prepack": "rm -rf lib && tsc && oclif-dev manifest && oclif-dev readme && npm shrinkwrap && cp -r src/template lib/template",
-    "prepare": "rm -rf lib && tsc",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif-dev readme && git add README.md"
-  },
   "types": "lib/index.d.ts"
 }
