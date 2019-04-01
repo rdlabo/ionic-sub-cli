@@ -66,6 +66,16 @@ console.log(environment)
 Environment file create `src/environments`. If you add command `--prod`, environment is `environment/environment.prod.ts`. 
 Or nothing, environment is `environment/environment.dev.ts`.
 
+
+#### beta: set init
+
+This command is angular(v4) only. Add this development file.
+
+- src/app/components/components.module.ts
+- src/app/directives/directives.module.ts
+- src/app/pipes/pipes.module.ts
+- src/interfaces/index.ts
+
 ### server
 ```bash
 $ ionic-sub server netlify -d example.com
