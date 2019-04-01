@@ -12,8 +12,8 @@ export class Formatter {
   }
 
   installPackage(): Promise<string> {
-    const packages = ['prettier', '@kaizenplatform/prettier-config', 'pre-commit', 'lint-staged'].join('');
-    const installCmd = `npm install ${packages} --save-dev`;
+    const packages = ['prettier', '@kaizenplatform/prettier-config', 'pre-commit', 'lint-staged'].join('')
+    const installCmd = `npm install ${packages} --save-dev`
     cli.action.start('> ' + chalk.green(installCmd))
     return new Promise((resolve, reject) => {
       exec(installCmd, (error: any) => {
