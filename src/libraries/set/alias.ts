@@ -100,7 +100,7 @@ export class Alias {
           }
         } else {
           tsconfig_json.compilerOptions.paths = {
-            '@/*': ['app/*']
+            '@/*': ['*']
           }
         }
         fs.writeFile('./tsconfig.json', JSON.stringify(tsconfig_json, null, '  '), (error: any) => {
