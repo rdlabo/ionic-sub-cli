@@ -67,7 +67,7 @@ Environment file create `src/environments`. If you add command `--prod`, environ
 Or nothing, environment is `environment/environment.dev.ts`.
 
 
-#### beta: set init
+#### beta: set mount
 
 This command is angular(v4) only. Add this development file.
 

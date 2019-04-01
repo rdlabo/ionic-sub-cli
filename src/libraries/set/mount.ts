@@ -4,7 +4,7 @@ const chalk = require('chalk')
 const exec = require('child_process').exec
 const fs = require('fs')
 
-export class Init {
+export class Mount {
   public type: string
   public flags: any
   constructor(type: string, flags: object) {

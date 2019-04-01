@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 const chalk = require('chalk')
 const subcommands = chalk.green('lint') + ', ' + chalk.green('formatter') + ', ' + chalk.green('alias') + ', ' + chalk.green('all')
-import {Alias, Formatter, Helper, Init, Lint} from '../libraries'
+import {Alias, Formatter, Helper, Lint, Mount} from '../libraries'
 
 export default class Set extends Command {
   static description = 'Commands for set project auto. (subcommands: ' + subcommands + ')'
@@ -41,8 +41,8 @@ export default class Set extends Command {
     case 'alias':
       this.alias().catch()
       break
-    case 'init':
-      this.init().catch()
+    case 'mount':
+      this.mount().catch()
       break
     case 'all':
       await this.lint().catch()
@@ -72,8 +72,8 @@ export default class Set extends Command {
     this.log(await alias.rewriteTsconfigJson().catch(error => error))
     this.log(await alias.addEnvironmentFile().catch(error => error))
   }
-  async init() {
-    const init = new Init(this.type, this.flags)
-    this.log(await init.installModules().catch(error => error))
+  async mount() {
+    const mount = new Mount(this.type, this.flags)
+    this.log(await mount.installModules().catch(error => error))
   }
 }
